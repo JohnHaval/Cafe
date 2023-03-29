@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище CafeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Checks">
+          <Key>
+            <PropertyRef Name="CheckID" />
+          </Key>
+          <Property Name="CheckID" Type="bigint" Nullable="false" />
+          <Property Name="Cost" Type="money" Nullable="false" />
+          <Property Name="Discount" Type="money" Nullable="false" />
+          <Property Name="CostNDiscount" Type="money" Nullable="false" />
+          <Property Name="IsComplexLunch" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Measures">
+          <Key>
+            <PropertyRef Name="MeasureID" />
+          </Key>
+          <Property Name="MeasureID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="HoldCount" Type="int" Nullable="false" />
+          <Property Name="MeasureID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Purchases">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="bigint" Nullable="false" />
+          <Property Name="CheckID" Type="bigint" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductCount" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Products_Measures">
+          <End Role="Measures" Type="Self.Measures" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Measures">
+              <PropertyRef Name="MeasureID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="MeasureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_Checks">
+          <End Role="Checks" Type="Self.Checks" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Checks">
+              <PropertyRef Name="CheckID" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="CheckID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище CafeModelContainer">
+          <EntitySet Name="Checks" EntityType="Self.Checks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Measures" EntityType="Self.Measures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchases" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Products_Measures" Association="Self.FK_Products_Measures">
+            <End Role="Measures" EntitySet="Measures" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Checks" Association="Self.FK_Purchases_Checks">
+            <End Role="Checks" EntitySet="Checks" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Products" Association="Self.FK_Purchases_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CafeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Checks">
+          <Key>
+            <PropertyRef Name="CheckID" />
+          </Key>
+          <Property Name="CheckID" Type="Int64" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Discount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CostNDiscount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="IsComplexLunch" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_Checks" FromRole="Checks" ToRole="Purchases" />
+        </EntityType>
+        <EntityType Name="Measures">
+          <Key>
+            <PropertyRef Name="MeasureID" />
+          </Key>
+          <Property Name="MeasureID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Measures" FromRole="Measures" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="HoldCount" Type="Int32" Nullable="false" />
+          <Property Name="MeasureID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Measures" Relationship="Self.FK_Products_Measures" FromRole="Products" ToRole="Measures" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_Products" FromRole="Products" ToRole="Purchases" />
+        </EntityType>
+        <EntityType Name="Purchases">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="Int64" Nullable="false" />
+          <Property Name="CheckID" Type="Int64" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Checks" Relationship="Self.FK_Purchases_Checks" FromRole="Purchases" ToRole="Checks" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Purchases_Products" FromRole="Purchases" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_Purchases_Checks">
+          <End Role="Checks" Type="Self.Checks" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Checks">
+              <PropertyRef Name="CheckID" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="CheckID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Measures">
+          <End Role="Measures" Type="Self.Measures" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Measures">
+              <PropertyRef Name="MeasureID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="MeasureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CafeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Checks" EntityType="Self.Checks" />
+          <EntitySet Name="Measures" EntityType="Self.Measures" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchases" />
+          <AssociationSet Name="FK_Purchases_Checks" Association="Self.FK_Purchases_Checks">
+            <End Role="Checks" EntitySet="Checks" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Measures" Association="Self.FK_Products_Measures">
+            <End Role="Measures" EntitySet="Measures" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Products" Association="Self.FK_Purchases_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CafeModelContainer" CdmEntityContainer="CafeEntities">
+          <EntitySetMapping Name="Checks">
+            <EntityTypeMapping TypeName="CafeModel.Checks">
+              <MappingFragment StoreEntitySet="Checks">
+                <ScalarProperty Name="CheckID" ColumnName="CheckID" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="CostNDiscount" ColumnName="CostNDiscount" />
+                <ScalarProperty Name="IsComplexLunch" ColumnName="IsComplexLunch" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Measures">
+            <EntityTypeMapping TypeName="CafeModel.Measures">
+              <MappingFragment StoreEntitySet="Measures">
+                <ScalarProperty Name="MeasureID" ColumnName="MeasureID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="CafeModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="HoldCount" ColumnName="HoldCount" />
+                <ScalarProperty Name="MeasureID" ColumnName="MeasureID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="CafeModel.Purchases">
+              <MappingFragment StoreEntitySet="Purchases">
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+                <ScalarProperty Name="CheckID" ColumnName="CheckID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductCount" ColumnName="ProductCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
