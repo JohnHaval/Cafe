@@ -91,8 +91,17 @@
     <Compile Include="Models\Purchases.cs">
       <DependentUpon>CafeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="View\Checks\ChecksView.xaml.cs">
+      <DependentUpon>ChecksView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Measures\MeasuresView.xaml.cs">
+      <DependentUpon>MeasuresView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Products\ProductsView.xaml.cs">
+      <DependentUpon>ProductsView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -110,7 +119,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Checks\ChecksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Measures\MeasuresView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Products\ProductsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,11 +170,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="View\Checks\" />
-    <Folder Include="View\Products\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Images\Cafe_Background.jpg" />
+    <Resource Include="Images\Products.png" />
+    <Resource Include="Images\Checks.png" />
+    <Resource Include="Images\Measures.png" />
+    <Resource Include="Images\Developer.png" />
+    <Resource Include="Images\Back.png" />
     <Content Include="Models\CafeModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CafeModel.Context.cs</LastGenOutput>

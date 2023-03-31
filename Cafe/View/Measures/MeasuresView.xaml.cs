@@ -1,5 +1,4 @@
-﻿using Cafe.View;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Cafe
+namespace Cafe.View.Measures
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для MeasuresView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MeasuresView : UserControl
     {
-        public MainWindow()
+        public MeasuresView()
         {
             InitializeComponent();
-            AppMainWindow = this;
-            MainScreen.Content = new MainView();
         }
-        public static MainWindow AppMainWindow;
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.AppMainWindow.MainScreen.Content = new MainView();
+        }
     }
 }
