@@ -60,7 +60,13 @@
                 Opacity="0.9"
                 BorderThickness="1"
                 BorderBrush="Gray">
-            
+            <DockPanel>
+
+                <TextBlock Text="№"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="Наименование"/>
+
+            </DockPanel>
         </Border>
 
         <ListView x:Name="MeasuresList" 
@@ -76,8 +82,10 @@
 
                         <DockPanel>
 
+                            <Separator DockPanel.Dock="Bottom"/>
                             <TextBlock Text="{Binding MeasureID}">Code1</TextBlock>
                             <TextBlock Text="{Binding Name}"></TextBlock>
+                            
 
                         </DockPanel>
 
