@@ -32,12 +32,12 @@ namespace Cafe.View
 
         private void Checks_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.AppMainWindow.MainScreen.Content = new Checks.ChecksView();
+            MainWindow.AppMainWindow.MainScreen.Content = new ChecksViews.ChecksView();
         }
 
         private void Measures_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.AppMainWindow.MainScreen.Content = new Measures.MeasuresView();
+            MainWindow.AppMainWindow.MainScreen.Content = new MeasuresViews.MeasuresView();
         }
 
         private void AboutProgram_Click(object sender, RoutedEventArgs e)

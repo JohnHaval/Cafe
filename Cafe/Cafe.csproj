@@ -92,16 +92,21 @@
     <Compile Include="Models\Purchases.cs">
       <DependentUpon>CafeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Checks\ChecksView.xaml.cs">
+    <Compile Include="Tools\NotificationActions.cs" />
+    <Compile Include="Tools\StylesActionClass.cs" />
+    <Compile Include="View\ChecksViews\ChecksView.xaml.cs">
       <DependentUpon>ChecksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Measures\MeasuresView.xaml.cs">
+    <Compile Include="View\MeasuresViews\MeasuresControlView.xaml.cs">
+      <DependentUpon>MeasuresControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MeasuresViews\MeasuresView.xaml.cs">
       <DependentUpon>MeasuresView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Products\ProductsView.xaml.cs">
+    <Compile Include="View\ProductsViews\ProductsView.xaml.cs">
       <DependentUpon>ProductsView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -120,7 +125,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Checks\ChecksView.xaml">
+    <Page Include="View\ChecksViews\ChecksView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,11 +133,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Measures\MeasuresView.xaml">
+    <Page Include="View\MeasuresViews\MeasuresControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Products\ProductsView.xaml">
+    <Page Include="View\MeasuresViews\MeasuresView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductsViews\ProductsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,6 +188,8 @@
     <Resource Include="Images\Measures.png" />
     <Resource Include="Images\Developer.png" />
     <Resource Include="Images\Back.png" />
+    <Resource Include="Images\Insert.png" />
+    <Resource Include="Images\Update.png" />
     <Content Include="Models\CafeModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CafeModel.Context.cs</LastGenOutput>

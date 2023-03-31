@@ -13,27 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Cafe.View.Measures
+namespace Cafe.View.ChecksViews
 {
     /// <summary>
-    /// Логика взаимодействия для MeasuresView.xaml
+    /// Логика взаимодействия для ChecksView.xaml
     /// </summary>
-    public partial class MeasuresView : UserControl
+    public partial class ChecksView : UserControl
     {
-        public MeasuresView()
+        public ChecksView()
         {
             InitializeComponent();
-            MeasuresList.Items.Add("sf");
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.AppMainWindow.MainScreen.Content = new MainView();
-        }
-
-        private void InsertObject_Click(object sender, RoutedEventArgs e)
-        {
-            MeasuresList.Items.Add("sf");
-
         }
     }
 }
