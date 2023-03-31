@@ -9,16 +9,6 @@ namespace Cafe.Tools
 {
     public static class NotificationActions
     {
-        public static bool GetRemoveResponse()
-        {
-            MessageBoxResult result = MessageBox.Show("Вы действительно хотите удалить выбранное в списке?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                return true;
-            }
-            else return false;
-        }
-
         public static void NeedSelectForUpdate()
         {
             MessageBox.Show("Для изменения элемента из списка, его необходимо выбрать!", "Изменение", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -32,6 +22,15 @@ namespace Cafe.Tools
         public static void KeyProblem()
         {
             MessageBox.Show("Невозможно удалить, так как запись используется в других таблицах!", "Удаление", MessageBoxButton.OK, MessageBoxImage.Stop);
+        }
+        public static bool GetRemoveResponse()
+        {
+            MessageBoxResult result = MessageBox.Show("Вы действительно хотите удалить выбранное в списке?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                return true;
+            }
+            else return false;
         }
         #endregion
 
