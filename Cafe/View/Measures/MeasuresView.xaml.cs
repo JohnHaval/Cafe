@@ -23,10 +23,17 @@ namespace Cafe.View.Measures
         public MeasuresView()
         {
             InitializeComponent();
+            MeasuresList.Items.Add("sf");
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.AppMainWindow.MainScreen.Content = new MainView();
+        }
+
+        private void InsertObject_Click(object sender, RoutedEventArgs e)
+        {
+            MeasuresList.Items.Add("sf");
+
         }
     }
 }

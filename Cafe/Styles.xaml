@@ -106,4 +106,23 @@
     </Style>
     <!--#endregion-->
 
+    <!--#region Стиль текста-->
+
+    <Style TargetType="TextBlock">
+
+        <Style.Setters>
+
+            <Setter Property="FontFamily" Value="SF Pro Display"/>
+            <Setter Property="FontSize" Value="14"/>
+
+        </Style.Setters>
+        
+    </Style>
+    
+    <!--#endregion-->
+
+    <Style TargetType="ListViewItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+
 </ResourceDictionary>
