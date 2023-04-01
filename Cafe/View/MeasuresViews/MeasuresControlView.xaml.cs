@@ -35,6 +35,7 @@ namespace Cafe.View.MeasuresViews
 
             ObjectName.Text = measure.Name;
         }
+
         Measures SelectedMeasure;
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -71,6 +72,11 @@ namespace Cafe.View.MeasuresViews
             {
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ObjectName.Focus();
         }
     }
 }

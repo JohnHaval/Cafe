@@ -47,7 +47,8 @@
 
                     <DropShadowEffect BlurRadius="10"
                                   Direction="280"
-                                  ShadowDepth="2"/>
+                                  ShadowDepth="2"
+                                      Color="White"/>
 
                 </TextBlock.Effect>
             </TextBlock>
@@ -63,13 +64,13 @@
 
                 <TextBlock Text="№"
                            HorizontalAlignment="Center"
-                           Width="104"
+                           Width="120"
                            TextAlignment="Center" 
                            VerticalAlignment="Center"/>
 
                 <Line X1="0" Y1="0" X2="0" Y2="95" Stroke="Black"/>
 
-                <TextBlock Text="Наименование"
+                <TextBlock Text="Единица измерения"
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
                            VerticalAlignment="Center"/>
@@ -88,8 +89,6 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
 
-                    <Border>
-
                         <DockPanel>
 
                             <Separator DockPanel.Dock="Bottom"/>
@@ -98,19 +97,16 @@
                                        TextAlignment="Center"></TextBlock>
 
                             <TextBlock Text="{Binding Name}"
-                                       Margin="5,0"></TextBlock>
+                                       Margin="15,0"></TextBlock>
 
 
                         </DockPanel>
-
-                    </Border>
 
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBox Text="" 
-                 Grid.Row="1" 
+        <TextBox Grid.Row="1" 
                  Grid.ColumnSpan="3" 
                  Grid.Column="1"
                  Opacity="0.9" Margin="0,7,0,7"/>
@@ -140,7 +136,8 @@
 
                 <DropShadowEffect BlurRadius="15"
                                   Direction="280"
-                                  ShadowDepth="2"/>
+                                  ShadowDepth="2"
+                                  Color="White"/>
 
             </TextBlock.Effect>
 
