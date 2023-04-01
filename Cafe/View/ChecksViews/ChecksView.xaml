@@ -85,7 +85,8 @@
                   Grid.ColumnSpan="5"
                   Opacity="0.9" 
                   Background="AliceBlue"
-                  SelectionMode="Single">
+                  SelectionMode="Single" 
+                  SelectionChanged="ChecksList_SelectionChanged">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -186,7 +187,7 @@
             </DockPanel>
         </Border>
 
-        <ListView x:Name="ProductsList" 
+        <ListView x:Name="PurchasesList" 
                   Grid.Row="5" 
                   Grid.ColumnSpan="5"
                   Opacity="0.9" 
@@ -254,8 +255,8 @@
                 Content="Изменить"
                 Grid.Row="6" 
                 Grid.Column="3" 
-                HorizontalAlignment="Left" 
-                Grid.ColumnSpan="2" Click="UpdateObject_Click" Margin="48,7,0,7"/>
+                HorizontalAlignment="Center" 
+                Grid.ColumnSpan="2" Click="UpdateObject_Click"/>
 
         <TextBlock Text="Искать"
                    FontSize="16"

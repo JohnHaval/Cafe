@@ -46,7 +46,7 @@ namespace Cafe.View.ProductsViews
             SelectedProduct = product;
 
             ObjectName.Text = product.Name;
-            Price.Text = product.Price.ToString("F0");
+            Price.Text = product.Price.ToString("F2");
             HoldCount.Text = product.HoldCount.ToString();
         }
 
