@@ -339,7 +339,7 @@
                 Grid.Column="3" 
                 HorizontalAlignment="Left" 
                 Grid.ColumnSpan="2" 
-                Width="150" Margin="23,7,0,7"/>
+                Width="150" Margin="23,7,0,7" Click="InsertCheck_Click"/>
 
         <Button x:Name="Cancel" 
                 Content="Отмена"

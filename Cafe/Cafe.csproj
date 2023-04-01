@@ -93,7 +93,7 @@
       <DependentUpon>CafeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Tools\DBContext.cs" />
-    <Compile Include="Tools\DiscountCalculator.cs" />
+    <Compile Include="Tools\CheckActions.cs" />
     <Compile Include="Tools\NotificationActions.cs" />
     <Compile Include="Tools\StylesActionClass.cs" />
     <Compile Include="View\ChecksViews\ChecksControlView.xaml.cs">

@@ -25,6 +25,11 @@ namespace Cafe.Tools
             MessageBox.Show("Числовые поля имеют некоррекные значения! Проверьте правильность!", "Ошибка",
                 MessageBoxButton.OK, MessageBoxImage.Error);
         }
+        public static void NoHoldCount()
+        {
+            MessageBox.Show("Продукт на остатках закончился! Невозможно добавить.", "Ошибка",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+        }    
 
         #region Сообщения удаления
         public static void NeedSelectBeforeRemove()
