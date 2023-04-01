@@ -42,7 +42,7 @@ namespace Cafe.View.ChecksViews
 
             ActionPicture.Source = new BitmapImage(new Uri("/Images/Update.png", UriKind.Relative));
             Title.Text = "Изменение чека";
-            InsertCheck.Content = "Сохранить";
+            InsertCheck.Content = "Сохранить чек";
             SelectedCheck = check;
 
             Cost.Text = check.Cost.ToString("F2");
