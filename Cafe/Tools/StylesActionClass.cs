@@ -1,5 +1,6 @@
 ﻿using Cafe.Models;
 using Cafe.View.MeasuresViews;
+using Cafe.View.ProductsViews;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,8 @@ namespace Cafe.Tools
             catch
             {
                 try
-                {//Products
-                    //MainWindow.AppMainWindow.MainScreen.Content = new MeasuresControlView((Measures)((ListViewItem)sender).Content);
+                {
+                    MainWindow.AppMainWindow.MainScreen.Content = new ProductsControlView((Products)((ListViewItem)sender).Content);
                 }
                 catch
                 {//Checks

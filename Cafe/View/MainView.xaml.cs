@@ -27,7 +27,7 @@ namespace Cafe.View
 
         private void Products_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.AppMainWindow.MainScreen.Content = new Products.ProductsView();
+            MainWindow.AppMainWindow.MainScreen.Content = new ProductsViews.ProductsView();
         }
 
         private void Checks_Click(object sender, RoutedEventArgs e)

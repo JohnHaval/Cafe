@@ -13,10 +13,12 @@
     </UserControl.Background>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="34*" MaxHeight="88"/>
+            <RowDefinition Height="69*" MaxHeight="88"/>
             <RowDefinition Height="44"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="126*"/>
+            <RowDefinition Height="102*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="118*"/>
             <RowDefinition Height="44"/>
         </Grid.RowDefinitions>
 
@@ -38,16 +40,17 @@
                    Width="40" Margin="10"/>
 
             <TextBlock Text="Чеки"
-                   FontSize="30"
-                   Height="36"
-                   FontFamily="SF Pro Display"
-                   FontWeight="SemiBold">
+                       FontSize="30"
+                       Height="36"
+                       FontFamily="SF Pro Display"
+                       FontWeight="SemiBold">
 
                 <TextBlock.Effect>
 
                     <DropShadowEffect BlurRadius="10"
-                                  Direction="280"
-                                  ShadowDepth="2"/>
+                                      Direction="280"
+                                      ShadowDepth="2"
+                                      Color="White"/>
 
                 </TextBlock.Effect>
             </TextBlock>
@@ -63,13 +66,13 @@
 
                 <TextBlock Text="№"
                            HorizontalAlignment="Center"
-                           Width="104"
+                           Width="120"
                            TextAlignment="Center" 
                            VerticalAlignment="Center"/>
 
                 <Line X1="0" Y1="0" X2="0" Y2="95" Stroke="Black"/>
 
-                <TextBlock Text="Наименование"
+                <TextBlock Text="Чек"
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
                            VerticalAlignment="Center"/>
@@ -80,49 +83,179 @@
         <ListView x:Name="ChecksList" 
                   Grid.Row="3" 
                   Grid.ColumnSpan="5"
-                  Opacity="0.9" Grid.RowSpan="1"
-                  Background="AliceBlue">
+                  Opacity="0.9" 
+                  Background="AliceBlue"
+                  SelectionMode="Single">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
 
-                    <Border>
+                    <DockPanel>
 
-                        <DockPanel>
-
-                            <Separator DockPanel.Dock="Bottom"/>
-                            <TextBlock Text="{Binding MeasureID}"
-                                       Width="104"
-                                       TextAlignment="Center">200000000</TextBlock>
+                        <Separator DockPanel.Dock="Bottom"/>
+                        <TextBlock Text="{Binding CheckID}"
+                                   Width="104"
+                                   TextAlignment="Center"
+                                   VerticalAlignment="Center"></TextBlock>
+                        <StackPanel>
 
                             <TextBlock Text="{Binding Name}"
-                                       Margin="5,0">штуки</TextBlock>
+                                       Margin="15,0" 
+                                       FontWeight="Bold"
+                                       FontSize="18"></TextBlock>
+
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Left"
+                                        Margin="15,0">
+
+                                <TextBlock FontSize="16">Комплексный обед:</TextBlock>
+                                <TextBlock Text="{Binding IsComplexLunchString}"
+                                           FontSize="16"
+                                           Margin="5,0"></TextBlock>
+
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Left"
+                                        Margin="15,0">
+
+                                <TextBlock FontSize="16">Без скидки:</TextBlock>
+                                <TextBlock Text="{Binding Cost, StringFormat=F2}"
+                                           FontSize="16"
+                                           Margin="5,0"></TextBlock>
+                                <TextBlock Margin="5,0"
+                                       FontSize="18">руб.</TextBlock>
+
+                                
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Left"
+                                        Margin="15,0">
+
+                                <TextBlock FontSize="16">Скидка:</TextBlock>
+                                <TextBlock Text="{Binding Discount, StringFormat=F2}"
+                                           FontSize="16"
+                                           Margin="5,0"></TextBlock>
+                                <TextBlock Margin="5,0"
+                                       FontSize="18">руб.</TextBlock>
 
 
-                        </DockPanel>
+                            </StackPanel>
 
-                    </Border>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+
+                            <TextBlock Margin="5,0"
+                                       FontSize="18">Итого:</TextBlock>
+                            <TextBlock Text="{Binding CostNDiscount, StringFormat=F2}"
+                                       FontSize="18"></TextBlock>
+                            <TextBlock Margin="5,0"
+                                       FontSize="18">руб.</TextBlock>
+                        </StackPanel>
+
+                    </DockPanel>
 
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBox Text="" 
-                 Grid.Row="1" 
+        <Border Grid.ColumnSpan="5"
+                Grid.Row="4"
+                Background="AliceBlue"
+                Opacity="0.9"
+                BorderThickness="1"
+                BorderBrush="Gray">
+            <DockPanel>
+
+                <TextBlock Text="№"
+                           HorizontalAlignment="Center"
+                           Width="120"
+                           TextAlignment="Center" 
+                           VerticalAlignment="Center"/>
+
+                <Line X1="0" Y1="0" X2="0" Y2="95" Stroke="Black"/>
+
+                <TextBlock Text="Товары в выбранном чеке"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+            </DockPanel>
+        </Border>
+
+        <ListView x:Name="ProductsList" 
+                  Grid.Row="5" 
+                  Grid.ColumnSpan="5"
+                  Opacity="0.9" 
+                  Background="AliceBlue"
+                  SelectionMode="Single">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <DockPanel>
+
+                        <Separator DockPanel.Dock="Bottom"/>
+                        <TextBlock Text="{Binding PurchaseID}"
+                                   Width="104"
+                                   TextAlignment="Center"
+                                   VerticalAlignment="Center"></TextBlock>
+                        <StackPanel>
+
+                            <TextBlock Text="{Binding Products.Name}"
+                                       Margin="15,0" 
+                                       FontWeight="Bold"
+                                       FontSize="18"></TextBlock>
+
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Left"
+                                        Margin="15,0">
+
+                                <TextBlock FontSize="16">Кол-во:</TextBlock>
+                                <TextBlock Text="{Binding ProductCount}"
+                                           FontSize="16"
+                                           Margin="5,0"></TextBlock>
+
+                                <TextBlock Text="{Binding Products.Measures.Name}"
+                                           FontSize="16"></TextBlock>
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding ProductCost, StringFormat=F2}"
+                                       FontSize="18"></TextBlock>
+                            <TextBlock Margin="5,0"
+                                       FontSize="18">руб.</TextBlock>
+                        </StackPanel>
+
+                    </DockPanel>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <TextBox Grid.Row="1" 
                  Grid.ColumnSpan="3" 
                  Grid.Column="1"
                  Opacity="0.9" Margin="0,7,0,7"/>
 
-        <Button Content="+" 
-                Grid.Row="4" 
+        <Button x:Name="InsertObject" 
+                Content="+" 
+                Grid.Row="6" 
                 Grid.Column="2"
-                HorizontalAlignment="Center"/>
+                HorizontalAlignment="Center" Click="InsertObject_Click" Margin="0,7,0,7"/>
 
-        <Button Content="Выбрать"
-                Grid.Row="4" 
+        <Button x:Name="UpdateObject" 
+                Content="Изменить"
+                Grid.Row="6" 
                 Grid.Column="3" 
-                HorizontalAlignment="Center" 
-                Grid.ColumnSpan="2"/>
+                HorizontalAlignment="Left" 
+                Grid.ColumnSpan="2" Click="UpdateObject_Click" Margin="48,7,0,7"/>
 
         <TextBlock Text="Искать"
                    FontSize="16"
@@ -136,16 +269,18 @@
 
                 <DropShadowEffect BlurRadius="15"
                                   Direction="280"
-                                  ShadowDepth="2"/>
+                                  ShadowDepth="2"
+                                  Color="White"/>
 
             </TextBlock.Effect>
 
         </TextBlock>
 
-        <Button Content="Удалить" 
-                Grid.Row="4" 
+        <Button x:Name="RemoveObject"
+                Content="Удалить" 
+                Grid.Row="6" 
                 Grid.ColumnSpan="2"
-                HorizontalAlignment="Center"/>
+                HorizontalAlignment="Center" Click="RemoveObject_Click" Margin="0,7,0,7"/>
 
         <Button x:Name="Back"                
                 HorizontalAlignment="Left"

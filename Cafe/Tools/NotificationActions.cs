@@ -11,7 +11,19 @@ namespace Cafe.Tools
     {
         public static void NeedSelectForUpdate()
         {
-            MessageBox.Show("Для изменения элемента из списка, его необходимо выбрать!", "Изменение", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show("Для изменения элемента из списка, его необходимо выбрать!", "Изменение", 
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        public static void NoComboList()
+        {
+            MessageBox.Show("Выпадающий список пуст! Невозможно добавить запись без данных в нем!", "Ошибка", 
+                MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        public static void IntError()
+        {
+            MessageBox.Show("Числовые поля имеют некоррекные значения! Проверьте правильность!", "Ошибка",
+                MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         #region Сообщения удаления

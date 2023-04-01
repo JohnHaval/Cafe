@@ -32,7 +32,7 @@
                 <Image Source="/Images/Products.png"
                        Height="75"/>
                 <Button x:Name="Products" 
-                        Content="Продукты"
+                        Content="Товары"
                         Margin="5,15"
                         Height="30" Click="Products_Click"/>
 
