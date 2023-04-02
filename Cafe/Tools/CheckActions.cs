@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Cafe.Tools
 {
@@ -20,6 +21,40 @@ namespace Cafe.Tools
         {
             if (product.HoldCount <= 0) return false;
             else return true;
+        }
+        public static void RestorePurchases(List<Purchases> startPurchases)
+        {
+            var newPurchases = from s in DBContext.Context.Purchases
+                               where !startPurchases.Any()
+                               select s;
+
+            foreach (var item in newPurchases.ToList())
+            {
+                Products product = item.Products;//Получение для будущего возврата к остаткам
+                DBContext.Context.Purchases.Remove(item);
+
+                DBContext.Context.SaveChanges();
+
+                product.HoldCount++;//Возвращение в остатки
+
+                DBContext.Context.SaveChanges();
+            }
+
+            var oldPurchases = from s in startPurchases
+                               where !DBContext.Context.Purchases.Any()
+                               select s;
+
+            foreach (var item in oldPurchases.ToList())
+            {
+                Products product = item.Products;//Получение для будущего возврата к остаткам
+                DBContext.Context.Purchases.Add(item);
+
+                DBContext.Context.SaveChanges();
+
+                product.HoldCount--;//Возвращение в остатки
+
+                DBContext.Context.SaveChanges();
+            }
         }
     }
 }

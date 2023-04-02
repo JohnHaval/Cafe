@@ -129,7 +129,7 @@
                     Grid.ColumnSpan="3"
                     Grid.Row="1"
                     Orientation="Horizontal"
-                    HorizontalAlignment="Left" Margin="323,0,0,0" Width="281">
+                    HorizontalAlignment="Right" Width="281">
 
             <TextBlock Text="Сумма всего:"
                        FontSize="16"
@@ -234,9 +234,7 @@
         </ListView>
 
         <Grid Grid.Row="2"
-              Grid.Column="1" 
-              Grid.ColumnSpan="3" 
-              Margin="100,0,100,0">
+              Grid.Column="2">
 
             <StackPanel HorizontalAlignment="Left">
             <TextBlock Text="Товар"
@@ -286,8 +284,7 @@
 
                 <TextBox x:Name="ProductCount"
                      Width="128"
-                     TextAlignment="Left"
-                     IsReadOnly="True"/>
+                     TextAlignment="Left"/>
                 
             </StackPanel>
 
@@ -339,14 +336,16 @@
                 Grid.Column="3" 
                 HorizontalAlignment="Left" 
                 Grid.ColumnSpan="2" 
-                Width="150" Margin="23,7,0,7" Click="InsertCheck_Click"/>
+                Width="150" Margin="23,7,0,7" 
+                Click="InsertCheck_Click"/>
 
         <Button x:Name="Cancel" 
                 Content="Отмена"
                 Grid.Row="5" 
                 HorizontalAlignment="Center" 
                 Grid.ColumnSpan="2" 
-                Width="150" Margin="0,7,0,7"/>
+                Width="150" Margin="0,7,0,7"
+                Click="Cancel_Click"/>
 
         <Button x:Name="RemoveObject"
                 Content="Удалить товар" 
@@ -356,16 +355,6 @@
                 Click="RemoveObject_Click" 
                 Margin="0,39,0,13"
                 Width="150"/>
-
-        <Button x:Name="Back"                
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Height="40"
-                Width="40"
-                Opacity="1"
-                BorderBrush="Transparent"
-                Background="Transparent"
-                Margin="5,5,0,0" Click="Back_Click"/>
 
     </Grid>
 </UserControl>

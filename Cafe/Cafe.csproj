@@ -92,6 +92,8 @@
     <Compile Include="Models\Purchases.cs">
       <DependentUpon>CafeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Tools\ClassesParts\Checks.cs" />
+    <Compile Include="Tools\ClassesParts\Purchases.cs" />
     <Compile Include="Tools\DBContext.cs" />
     <Compile Include="Tools\CheckActions.cs" />
     <Compile Include="Tools\NotificationActions.cs" />

@@ -100,11 +100,6 @@
                                    VerticalAlignment="Center"></TextBlock>
                         <StackPanel>
 
-                            <TextBlock Text="{Binding Name}"
-                                       Margin="15,0" 
-                                       FontWeight="Bold"
-                                       FontSize="18"></TextBlock>
-
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Left"
                                         Margin="15,0">

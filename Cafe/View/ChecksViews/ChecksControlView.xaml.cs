@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,13 +56,49 @@ namespace Cafe.View.ChecksViews
             }
 
             PurchasesList.ItemsSource = check.Purchases.ToList();
-        }
-        Checks SelectedCheck;
-        bool IsNewCheck;
 
+            Purchases = check.Purchases.ToList();
+        }
+
+        Checks SelectedCheck;
+        List<Purchases> Purchases;
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.AppMainWindow.MainScreen.Content = new ChecksView();
+            try
+            {
+                if (Purchases != null)
+                {
+
+                    CheckActions.RestorePurchases(Purchases);
+
+                }
+                else
+                {
+                    if (SelectedCheck != null)
+                    {
+                        var purchases = DBContext.Context.Purchases.Where(p => p.CheckID == SelectedCheck.CheckID).ToList();
+                        foreach (var item in purchases)
+                        {
+                            Products product = item.Products;//Получение для будущего возврата к остаткам
+                            DBContext.Context.Purchases.Remove(item);
+
+                            DBContext.Context.SaveChanges();
+
+                            product.HoldCount++;//Возвращение в остатки
+
+                            DBContext.Context.SaveChanges();
+                        }
+                        DBContext.Context.Checks.Remove(SelectedCheck);
+                        DBContext.Context.SaveChanges();
+                    }
+                }
+
+                MainWindow.AppMainWindow.MainScreen.Content = new ChecksView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void InsertObject_Click(object sender, RoutedEventArgs e)
@@ -91,19 +128,21 @@ namespace Cafe.View.ChecksViews
                 }
                 if (SelectedCheck == null) CreateNewCheck();
 
-
-                DBContext.Context.Purchases.Add(new Purchases()
+                var purchase = new Purchases()
                 {
                     PurchaseID = id,
                     CheckID = SelectedCheck.CheckID,
                     ProductID = ((Products)Products.SelectedItem).ProductID,
                     ProductCount = count
-                });
+                };
+                DBContext.Context.Purchases.Add(purchase);
                 DBContext.Context.SaveChanges();
 
                 ((Products)Products.SelectedItem).HoldCount--;//Списание товара с остатков
 
                 DBContext.Context.SaveChanges();
+
+                UpdateDisplayedData();
 
                 DBContext.Context.Purchases.Load();
                 PurchasesList.Items.Refresh();
@@ -131,6 +170,8 @@ namespace Cafe.View.ChecksViews
 
                     DBContext.Context.Purchases.Load();
                     PurchasesList.Items.Refresh();
+
+                    UpdateDisplayedData();
                 }
                 else NotificationActions.NeedSelectBeforeRemove();
             }
@@ -143,7 +184,6 @@ namespace Cafe.View.ChecksViews
         {
             try
             {
-                IsNewCheck = true;
                 long id = 1;
                 try
                 {
@@ -169,19 +209,77 @@ namespace Cafe.View.ChecksViews
 
         private void InsertCheck_Click(object sender, RoutedEventArgs e)
         {
-            
+            try
+            {
+                DBContext.Context.SaveChanges();
+
+                MainWindow.AppMainWindow.MainScreen.Content = new ChecksView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void UpdateDisplayedData()
         {
             try
-            {//ДОРАБОТАТЬ ЛОГИКУ СУММИРОВАНИЯ КОЛ-ВО*ЦЕНА!!
-                var purchases = DBContext.Context.Purchases.ToList().Where(p => p.CheckID == SelectedCheck.CheckID);//
-                if (ComplexLunch.SelectedIndex == 1) Discount.Text = CheckActions.GetDiscount(Convert.ToDecimal(Cost.Text)).ToString();
+            {
+                decimal cost = CalculateMainCost();
+                SelectedCheck.Cost = cost;
+                SelectedCheck.Discount = CheckActions.GetDiscount(cost);
+
+                if (ComplexLunch.SelectedIndex == 1)
+                {
+                    SelectedCheck.CostNDiscount = SelectedCheck.Cost - SelectedCheck.Discount;
+                    SelectedCheck.IsComplexLunch = false;
+                }
+                else
+                {
+                    SelectedCheck.Discount = 0;
+                    SelectedCheck.CostNDiscount = SelectedCheck.Cost;
+                    SelectedCheck.IsComplexLunch = true;
+                }
+                Cost.Text = SelectedCheck.Cost.ToString();
+                Discount.Text = SelectedCheck.Discount.ToString();
+                CostNDiscount.Text = SelectedCheck.CostNDiscount.ToString();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private decimal CalculateMainCost()
+        {
+            try
+            {
+                decimal mainCost = 0;
+                var purchases = DBContext.Context.Purchases.ToList().Where(p => p.CheckID == SelectedCheck.CheckID);
+                foreach (var item in purchases.ToList())
+                {
+                    mainCost += item.ProductCount * item.Products.Price;
+                }
+                return mainCost;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        private void ComplexLunch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SelectedCheck != null)
+            {
+                if (ComplexLunch.SelectedIndex == 1)
+                {
+                    SelectedCheck.Discount = 0;
+                }
+                else
+                {
+                    SelectedCheck.Discount = CheckActions.GetDiscount(SelectedCheck.Cost);
+                }
+                Discount.Text = SelectedCheck.Discount.ToString();
             }
         }
     }

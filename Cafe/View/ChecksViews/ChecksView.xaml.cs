@@ -59,7 +59,20 @@ namespace Cafe.View.ChecksViews
                 {
                     if (NotificationActions.GetRemoveResponse())
                     {
-                        DBContext.Context.Checks.Remove((Checks)ChecksList.SelectedItem);
+                        var check = (Checks)ChecksList.SelectedItem;
+                        var purchases = DBContext.Context.Purchases.Where(p => p.CheckID == check.CheckID).ToList();
+                        foreach (var item in purchases)
+                        {
+                            Products product = item.Products;//Получение для будущего возврата к остаткам
+                            DBContext.Context.Purchases.Remove(item);
+
+                            DBContext.Context.SaveChanges();
+
+                            product.HoldCount++;//Возвращение в остатки
+
+                            DBContext.Context.SaveChanges();
+                        }
+                        DBContext.Context.Checks.Remove(check);
                         DBContext.Context.SaveChanges();
                         ChecksList.Items.Refresh();
                     }
