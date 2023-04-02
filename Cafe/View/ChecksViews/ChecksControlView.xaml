@@ -67,7 +67,7 @@
                     Grid.Row="1"
                     Grid.ColumnSpan="3"
                     HorizontalAlignment="Left" Width="257">
-            <TextBlock Text="Коплексный обед"
+            <TextBlock Text="Комплексный обед"
                        FontSize="16"
                        FontWeight="Medium"
                        TextAlignment="Center"
