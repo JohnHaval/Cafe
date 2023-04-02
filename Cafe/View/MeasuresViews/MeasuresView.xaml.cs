@@ -26,7 +26,7 @@ namespace Cafe.View.MeasuresViews
         public MeasuresView()
         {
             InitializeComponent();
-            MeasuresList.ItemsSource = DBContext.Context.Measures.Local.ToBindingList();
+            RefreshAll();
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
@@ -60,7 +60,6 @@ namespace Cafe.View.MeasuresViews
                     {
                         DBContext.Context.Measures.Remove((Measures)MeasuresList.SelectedItem);
                         DBContext.Context.SaveChanges();
-                        MeasuresList.Items.Refresh();
                     }
                 }
                 else
@@ -72,6 +71,7 @@ namespace Cafe.View.MeasuresViews
             {
                 NotificationActions.KeyProblem();
             }
+            RefreshAll();
         }
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
@@ -92,6 +92,17 @@ namespace Cafe.View.MeasuresViews
                 MeasuresList.SelectedIndex = -1;
             }
             else MeasuresList.SelectedIndex = -1;
+        }
+
+        private void RefreshTable_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshAll();
+        }
+        private void RefreshAll()
+        {
+            DBContext.Context.Measures.Load();
+            MeasuresList.ItemsSource = null;
+            MeasuresList.ItemsSource = DBContext.Context.Measures.Local.ToBindingList();
         }
     }
 }

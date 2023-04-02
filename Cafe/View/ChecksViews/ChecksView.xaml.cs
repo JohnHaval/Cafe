@@ -27,7 +27,7 @@ namespace Cafe.View.ChecksViews
         public ChecksView()
         {
             InitializeComponent();
-            ChecksList.ItemsSource = DBContext.Context.Checks.Local.ToBindingList();
+            RefreshAll();
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
@@ -68,7 +68,6 @@ namespace Cafe.View.ChecksViews
                         }
                         DBContext.Context.Checks.Remove(check);
                         DBContext.Context.SaveChanges();
-                        ChecksList.Items.Refresh();
                     }
                 }
                 else
@@ -80,6 +79,7 @@ namespace Cafe.View.ChecksViews
             {
                 NotificationActions.KeyProblem();
             }
+            RefreshAll();
         }
 
         private void ChecksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -108,6 +108,18 @@ namespace Cafe.View.ChecksViews
                 ChecksList.SelectedIndex = -1;
             }
             else ChecksList.SelectedIndex = -1;
+        }
+
+        private void RefreshTable_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshAll();
+        }
+        private void RefreshAll()
+        {
+            DBContext.Context.Checks.Load();
+            DBContext.Context.Purchases.Load();
+            ChecksList.ItemsSource = null;
+            ChecksList.ItemsSource = DBContext.Context.Checks.Local.ToBindingList();
         }
     }
 }

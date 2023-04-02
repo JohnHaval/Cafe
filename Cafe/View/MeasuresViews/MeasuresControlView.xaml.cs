@@ -1,6 +1,7 @@
 ﻿using Cafe.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,7 @@ namespace Cafe.View.MeasuresViews
                     int id = 1;
                     try
                     {
+                        DBContext.Context.Measures.Load();
                         id = DBContext.Context.Measures.ToList().Max(p => p.MeasureID) + 1;
                     }
                     catch { }

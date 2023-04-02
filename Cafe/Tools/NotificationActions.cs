@@ -38,7 +38,7 @@ namespace Cafe.Tools
         }
         public static void KeyProblem()
         {
-            MessageBox.Show("Невозможно удалить, так как запись используется в других таблицах!", "Удаление", MessageBoxButton.OK, MessageBoxImage.Stop);
+            MessageBox.Show("Невозможно удалить, так как запись используется в других таблицах или она уже удалена!", "Удаление", MessageBoxButton.OK, MessageBoxImage.Stop);
         }
         public static bool GetRemoveResponse()
         {

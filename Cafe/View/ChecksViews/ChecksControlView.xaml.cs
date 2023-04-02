@@ -85,6 +85,7 @@ namespace Cafe.View.ChecksViews
                 int count = 0;
                 try
                 {
+                    DBContext.Context.Purchases.Load();
                     id = DBContext.Context.Purchases.ToList().Max(p => p.PurchaseID) + 1;
                 }
                 catch { }
@@ -168,6 +169,7 @@ namespace Cafe.View.ChecksViews
                 long id = 1;
                 try
                 {
+                    DBContext.Context.Checks.Load();
                     id = DBContext.Context.Checks.ToList().Max(p => p.CheckID) + 1;
                 }
                 catch { }

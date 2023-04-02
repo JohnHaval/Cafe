@@ -70,6 +70,7 @@ namespace Cafe.View.ProductsViews
                 decimal price = 0;
                 try
                 {
+                    DBContext.Context.Products.Load();
                     id = DBContext.Context.Products.ToList().Max(p => p.ProductID) + 1;
                 }
                 catch { }

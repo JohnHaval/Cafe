@@ -27,7 +27,7 @@ namespace Cafe.View.ProductsViews
         public ProductsView()
         {
             InitializeComponent();
-            ProductsList.ItemsSource = DBContext.Context.Products.Local.ToBindingList();
+            RefreshAll();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -61,8 +61,7 @@ namespace Cafe.View.ProductsViews
                     if (NotificationActions.GetRemoveResponse())
                     {
                         DBContext.Context.Products.Remove((Products)ProductsList.SelectedItem);
-                        DBContext.Context.SaveChanges();
-                        ProductsList.Items.Refresh();
+                        DBContext.Context.SaveChanges();                        
                     }
                 }
                 else
@@ -74,6 +73,7 @@ namespace Cafe.View.ProductsViews
             {
                 NotificationActions.KeyProblem();
             }
+            RefreshAll();
         }
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
@@ -94,6 +94,17 @@ namespace Cafe.View.ProductsViews
                 ProductsList.SelectedIndex = -1;
             }
             else ProductsList.SelectedIndex = -1;
+        }
+
+        private void RefreshTable_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshAll();
+        }
+        private void RefreshAll()
+        {
+            DBContext.Context.Products.Load();
+            ProductsList.ItemsSource = null;
+            ProductsList.ItemsSource = DBContext.Context.Products.Local.ToBindingList();
         }
     }
 }

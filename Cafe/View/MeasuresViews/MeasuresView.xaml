@@ -103,7 +103,9 @@
                  Grid.ColumnSpan="2" 
                  Grid.Column="2"
                  Opacity="0.9" 
-                 Margin="0,7,0,7" TextChanged="Search_TextChanged"/>
+                 Margin="0,7,0,7" 
+                 TextChanged="Search_TextChanged"
+                 MaxLength="50"/>
 
         <ListView x:Name="MeasuresList" 
                   Grid.Row="3" 
@@ -140,11 +142,18 @@
                 HorizontalAlignment="Center" 
                 Click="RemoveObject_Click"/>
 
+        <Button x:Name="RefreshTable" 
+                Content="Обновить" 
+                Grid.Row="4" 
+                Grid.Column="2"
+                HorizontalAlignment="Left" 
+                Click="RefreshTable_Click"/>
+
         <Button x:Name="InsertObject" 
                 Content="+" 
                 Grid.Row="4" 
                 Grid.Column="2"
-                HorizontalAlignment="Center" 
+                HorizontalAlignment="Right" 
                 Click="InsertObject_Click"
                 IsDefault="True"/>
 
