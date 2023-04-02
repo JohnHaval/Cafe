@@ -24,9 +24,9 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="96"/>
-            <ColumnDefinition Width="100*"/>
-            <ColumnDefinition Width="406*"/>
-            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="407.34"/>
+            <ColumnDefinition/>
             <ColumnDefinition Width="96"/>
         </Grid.ColumnDefinitions>
 
@@ -237,21 +237,21 @@
               Grid.Column="2">
 
             <StackPanel HorizontalAlignment="Left">
-            <TextBlock Text="Товар"
+                <TextBlock Text="Товар"
                        FontSize="24"
                        FontWeight="Medium"
                        TextAlignment="Center"
                        Margin="4.5">
 
-                <TextBlock.Effect>
+                    <TextBlock.Effect>
 
-                    <DropShadowEffect BlurRadius="10"
+                        <DropShadowEffect BlurRadius="10"
                                       Direction="280"
                                       ShadowDepth="2"
                                       Color="White"/>
 
-                </TextBlock.Effect>
-            </TextBlock>
+                    </TextBlock.Effect>
+                </TextBlock>
 
                 <ComboBox x:Name="Products"
                           DisplayMemberPath="Name"
@@ -261,7 +261,7 @@
                           VerticalContentAlignment="Center"/>
 
             </StackPanel>
-            
+
             <StackPanel HorizontalAlignment="Right">
 
                 <TextBlock Text="Количество"
@@ -284,8 +284,8 @@
 
                 <TextBox x:Name="ProductCount"
                      Width="128"
-                     TextAlignment="Left"/>
-                
+                     TextAlignment="Center"/>
+
             </StackPanel>
 
         </Grid>
@@ -325,7 +325,7 @@
                 Grid.Row="2" 
                 Grid.Column="3"
                 Grid.ColumnSpan="2"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 Click="InsertObject_Click" 
                 Margin="23,39,0,13"
                 Width="150"/>
@@ -334,7 +334,7 @@
                 Content="Добавить чек"
                 Grid.Row="5" 
                 Grid.Column="3" 
-                HorizontalAlignment="Left" 
+                HorizontalAlignment="Center" 
                 Grid.ColumnSpan="2" 
                 Width="150" Margin="23,7,0,7" 
                 Click="InsertCheck_Click"/>

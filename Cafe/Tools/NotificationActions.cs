@@ -27,7 +27,7 @@ namespace Cafe.Tools
         }
         public static void NoHoldCount()
         {
-            MessageBox.Show("Продукт на остатках закончился! Невозможно добавить.", "Ошибка",
+            MessageBox.Show("Продукта нет в таком количестве на остатках! Невозможно добавить.", "Ошибка",
                 MessageBoxButton.OK, MessageBoxImage.Error);
         }    
 

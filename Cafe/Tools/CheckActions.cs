@@ -21,43 +21,6 @@ namespace Cafe.Tools
         {
             if ((product.HoldCount - count) < 0) return false;
             else return true;
-        }
-        public static void RestorePurchases(List<Purchases> startPurchases)
-        {
-            var newPurchases = (from s in DBContext.Context.Purchases.ToList()
-                               where !startPurchases.Any()
-                               select s).ToList();
-            if (newPurchases.Count != 0)
-            {
-                foreach (var item in newPurchases.ToList())
-                {
-                    Products product = item.Products;//Получение для будущего возврата к остаткам
-                    DBContext.Context.Purchases.Remove(item);
-
-                    DBContext.Context.SaveChanges();
-
-                    product.HoldCount++;//Возвращение в остатки
-
-                    DBContext.Context.SaveChanges();
-                }
-            }
-            var oldPurchases = (from s in startPurchases
-                               where !DBContext.Context.Purchases.ToList().Any()
-                               select s).ToList();
-            if (oldPurchases.Count != 0)
-            {
-                foreach (var item in oldPurchases.ToList())
-                {
-                    Products product = item.Products;//Получение для будущего возврата к остаткам
-                    DBContext.Context.Purchases.Add(item);
-
-                    DBContext.Context.SaveChanges();
-
-                    product.HoldCount--;//Возвращение в остатки
-
-                    DBContext.Context.SaveChanges();
-                }
-            }
-        }
+        }       
     }
 }
