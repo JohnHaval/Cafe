@@ -73,5 +73,25 @@ namespace Cafe.View.MeasuresViews
                 NotificationActions.KeyProblem();
             }
         }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Search.Text.Count() != 0)
+            {
+                foreach (var item in MeasuresList.Items)
+                {
+                    var measure = (Measures)item;
+                    if (measure.MeasureID.ToString().Contains(Search.Text)||
+                        measure.Name.Contains(Search.Text))
+                    {
+                        MeasuresList.SelectedItem = item;
+                        MeasuresList.ScrollIntoView(item);
+                        return;
+                    }
+                }
+                MeasuresList.SelectedIndex = -1;
+            }
+            else MeasuresList.SelectedIndex = -1;
+        }
     }
 }

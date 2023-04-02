@@ -75,5 +75,25 @@ namespace Cafe.View.ProductsViews
                 NotificationActions.KeyProblem();
             }
         }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Search.Text.Count() != 0)
+            {
+                foreach (var item in ProductsList.Items)
+                {
+                    var product = (Products)item;
+                    if (product.ProductID.ToString().Contains(Search.Text) ||
+                        product.Name.Contains(Search.Text))
+                    {
+                        ProductsList.SelectedItem = item;
+                        ProductsList.ScrollIntoView(item);
+                        return;
+                    }
+                }
+                ProductsList.SelectedIndex = -1;
+            }
+            else ProductsList.SelectedIndex = -1;
+        }
     }
 }

@@ -26,6 +26,8 @@ namespace Cafe
             InitializeComponent();
             AppMainWindow = this;
             MainScreen.Content = new MainView();
+
+            DBContext.UpdateContext();
         }
         public static MainWindow AppMainWindow;
     }

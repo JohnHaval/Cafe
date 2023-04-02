@@ -56,6 +56,33 @@
             </TextBlock>
         </StackPanel>
 
+        <TextBlock Text="Искать (№)"
+                   FontSize="16"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontFamily="SF Pro Display"
+                   FontWeight="SemiBold">
+
+            <TextBlock.Effect>
+
+                <DropShadowEffect BlurRadius="15"
+                                  Direction="280"
+                                  ShadowDepth="2"
+                                  Color="White"/>
+
+            </TextBlock.Effect>
+
+        </TextBlock>
+
+        <TextBox x:Name="Search" Grid.Row="1" 
+                 Grid.ColumnSpan="2" 
+                 Grid.Column="2"
+                 Opacity="0.9" 
+                 Margin="0,7,0,7" 
+                 TextChanged="Search_TextChanged"/>
+
         <Border Grid.ColumnSpan="5"
                 Grid.Row="2"
                 Background="AliceBlue"
@@ -235,48 +262,32 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBox Grid.Row="1" 
-                 Grid.ColumnSpan="3" 
-                 Grid.Column="1"
-                 Opacity="0.9" Margin="0,7,0,7"/>
 
         <Button x:Name="InsertObject" 
                 Content="+" 
                 Grid.Row="6" 
                 Grid.Column="2"
-                HorizontalAlignment="Center" Click="InsertObject_Click" Margin="0,7,0,7"/>
+                HorizontalAlignment="Center" 
+                Click="InsertObject_Click" 
+                Margin="0,7,0,7"
+                IsDefault="True"/>
 
         <Button x:Name="UpdateObject" 
                 Content="Изменить"
                 Grid.Row="6" 
                 Grid.Column="3" 
                 HorizontalAlignment="Center" 
-                Grid.ColumnSpan="2" Click="UpdateObject_Click"/>
+                Grid.ColumnSpan="2" 
+                Click="UpdateObject_Click"/>
 
-        <TextBlock Text="Искать"
-                   FontSize="16"
-                   Grid.Row="1"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontFamily="SF Pro Display"
-                   FontWeight="SemiBold">
-
-            <TextBlock.Effect>
-
-                <DropShadowEffect BlurRadius="15"
-                                  Direction="280"
-                                  ShadowDepth="2"
-                                  Color="White"/>
-
-            </TextBlock.Effect>
-
-        </TextBlock>
 
         <Button x:Name="RemoveObject"
                 Content="Удалить" 
                 Grid.Row="6" 
                 Grid.ColumnSpan="2"
-                HorizontalAlignment="Center" Click="RemoveObject_Click" Margin="0,7,0,7"/>
+                HorizontalAlignment="Center"
+                Click="RemoveObject_Click" 
+                Margin="0,7,0,7"/>
 
         <Button x:Name="Back"                
                 HorizontalAlignment="Left"
@@ -286,7 +297,9 @@
                 Opacity="1"
                 BorderBrush="Transparent"
                 Background="Transparent"
-                Margin="5,5,0,0" Click="Back_Click">
+                Margin="5,5,0,0" 
+                Click="Back_Click"
+                IsCancel="True">
 
             <Image Source="/Images/Back.png"/>
 

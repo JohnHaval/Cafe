@@ -90,5 +90,24 @@ namespace Cafe.View.ChecksViews
             }
             else PurchasesList.ItemsSource = null;
         }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Search.Text.Count() != 0)
+            {
+                foreach (var item in ChecksList.Items)
+                {
+                    var check = (Checks)item;
+                    if (check.CheckID.ToString().Contains(Search.Text))
+                    {
+                        ChecksList.SelectedItem = item;
+                        ChecksList.ScrollIntoView(item);
+                        return;
+                    }
+                }
+                ChecksList.SelectedIndex = -1;
+            }
+            else ChecksList.SelectedIndex = -1;
+        }
     }
 }

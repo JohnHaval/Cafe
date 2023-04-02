@@ -82,12 +82,12 @@
                 
                 <Button x:Name="AddObject"
                         Content="Добавить" 
+                        Grid.Column="1" 
                         IsDefault="True"
                         Click="AddObject_Click"/>
 
                 <Button x:Name="Cancel"
                         Content="Отмена"
-                        Grid.Column="1" 
                         IsCancel="True"
                         Click="Cancel_Click"/>
 

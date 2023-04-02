@@ -78,55 +78,10 @@
             </DockPanel>
         </Border>
 
-        <ListView x:Name="MeasuresList" 
-                  Grid.Row="3" 
-                  Grid.ColumnSpan="5"
-                  Opacity="0.9" 
-                  Grid.RowSpan="1"
-                  Background="AliceBlue"
-                  SelectionMode="Single">
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-
-                        <DockPanel>
-
-                            <Separator DockPanel.Dock="Bottom"/>
-                            <TextBlock Text="{Binding MeasureID}"
-                                       Width="104"
-                                       TextAlignment="Center"></TextBlock>
-
-                            <TextBlock Text="{Binding Name}"
-                                       Margin="15,0"></TextBlock>
-
-
-                        </DockPanel>
-
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <TextBox Grid.Row="1" 
-                 Grid.ColumnSpan="3" 
-                 Grid.Column="1"
-                 Opacity="0.9" Margin="0,7,0,7"/>
-
-        <Button x:Name="InsertObject" 
-                Content="+" 
-                Grid.Row="4" 
-                Grid.Column="2"
-                HorizontalAlignment="Center" Click="InsertObject_Click"/>
-
-        <Button x:Name="UpdateObject" 
-                Content="Изменить"
-                Grid.Row="4" 
-                Grid.Column="3" 
-                HorizontalAlignment="Center" 
-                Grid.ColumnSpan="2" Click="UpdateObject_Click"/>
-
-        <TextBlock Text="Искать"
+        <TextBlock Text="Искать (№, Имя)"
                    FontSize="16"
                    Grid.Row="1"
+                   Grid.ColumnSpan="2"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontFamily="SF Pro Display"
@@ -143,11 +98,63 @@
 
         </TextBlock>
 
+        <TextBox x:Name="Search"
+                 Grid.Row="1" 
+                 Grid.ColumnSpan="2" 
+                 Grid.Column="2"
+                 Opacity="0.9" 
+                 Margin="0,7,0,7" TextChanged="Search_TextChanged"/>
+
+        <ListView x:Name="MeasuresList" 
+                  Grid.Row="3" 
+                  Grid.ColumnSpan="5"
+                  Opacity="0.9" 
+                  Grid.RowSpan="1"
+                  Background="AliceBlue"
+                  SelectionMode="Single">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <DockPanel>
+
+                        <Separator DockPanel.Dock="Bottom"/>
+                        <TextBlock Text="{Binding MeasureID}"
+                                       Width="104"
+                                       TextAlignment="Center"></TextBlock>
+
+                        <TextBlock Text="{Binding Name}"
+                                       Margin="15,0"></TextBlock>
+
+
+                    </DockPanel>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
         <Button x:Name="RemoveObject"
                 Content="Удалить" 
                 Grid.Row="4" 
                 Grid.ColumnSpan="2"
-                HorizontalAlignment="Center" Click="RemoveObject_Click"/>
+                HorizontalAlignment="Center" 
+                Click="RemoveObject_Click"/>
+
+        <Button x:Name="InsertObject" 
+                Content="+" 
+                Grid.Row="4" 
+                Grid.Column="2"
+                HorizontalAlignment="Center" 
+                Click="InsertObject_Click"
+                IsDefault="True"/>
+
+        <Button x:Name="UpdateObject" 
+                Content="Изменить"
+                Grid.Row="4" 
+                Grid.Column="3" 
+                HorizontalAlignment="Center" 
+                Grid.ColumnSpan="2" 
+                Click="UpdateObject_Click"/>
 
         <Button x:Name="Back"                
                 HorizontalAlignment="Left"
@@ -157,7 +164,9 @@
                 Opacity="1"
                 BorderBrush="Transparent"
                 Background="Transparent"
-                Margin="5,5,0,0" Click="Back_Click">
+                Margin="5,5,0,0" 
+                Click="Back_Click"
+                IsCancel="True">
 
             <Image Source="/Images/Back.png"/>
 
