@@ -1,23 +1,11 @@
 ﻿using Cafe.Models;
 using Cafe.Tools;
-using Cafe.View.ProductsViews;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Cafe.View.ProductsViews
 {
@@ -85,7 +73,7 @@ namespace Cafe.View.ProductsViews
                     return;
                 }
                 if (SelectedProduct == null)
-                {                    
+                {
                     DBContext.Context.Products.Add(new Products()
                     {
                         ProductID = id,

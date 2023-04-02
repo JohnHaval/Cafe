@@ -1,39 +1,34 @@
 ﻿using Cafe.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cafe
 {
     public static class DBContext
     {
-        private static CafeEntities _context;
+        private static CafeEntities s_context;
         public static CafeEntities Context
         {
             get
             {
-                if (_context == null)
+                if (s_context == null)
                 {
                     UpdateContext();
-                    return _context;
+                    return s_context;
                 }
-                else return _context;
+                else return s_context;
             }
             private set
             {
-                _context = value;
+                s_context = value;
             }
         }
         public static void UpdateContext()
         {
-            _context = new CafeEntities();
-            _context.Measures.Load();
-            _context.Products.Load();
-            _context.Checks.Load();
-            _context.Purchases.Load();
+            s_context = new CafeEntities();
+            s_context.Measures.Load();
+            s_context.Products.Load();
+            s_context.Checks.Load();
+            s_context.Purchases.Load();
         }
     }
 }

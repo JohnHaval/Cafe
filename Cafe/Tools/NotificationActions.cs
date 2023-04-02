@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Cafe.Tools
 {
@@ -11,13 +6,13 @@ namespace Cafe.Tools
     {
         public static void NeedSelectForUpdate()
         {
-            MessageBox.Show("Для изменения элемента из списка, его необходимо выбрать!", "Изменение", 
+            MessageBox.Show("Для изменения элемента из списка, его необходимо выбрать!", "Изменение",
                 MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         public static void NoComboList()
         {
-            MessageBox.Show("Выпадающий список пуст! Невозможно добавить запись без данных в нем!", "Ошибка", 
+            MessageBox.Show("Выпадающий список пуст! Невозможно добавить запись без данных в нем!", "Ошибка",
                 MessageBoxButton.OK, MessageBoxImage.Error);
         }
         public static void IntError()
@@ -29,7 +24,7 @@ namespace Cafe.Tools
         {
             MessageBox.Show("Продукта нет в таком количестве на остатках! Невозможно добавить.", "Ошибка",
                 MessageBoxButton.OK, MessageBoxImage.Error);
-        }    
+        }
         public static bool WindowClosing()
         {
             MessageBoxResult result = MessageBox.Show("Вы действительно хотите закрыть программу?", "Закрытие программы",

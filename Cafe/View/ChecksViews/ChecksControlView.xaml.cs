@@ -1,25 +1,12 @@
 ﻿using Cafe.Models;
 using Cafe.Tools;
-using Cafe.View.ChecksViews;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Cafe.View.ChecksViews
 {
@@ -107,7 +94,7 @@ namespace Cafe.View.ChecksViews
                 {
                     NotificationActions.NoHoldCount();
                     return;
-                }                
+                }
                 if (SelectedCheck == null) CreateNewCheck();
 
                 var purchase = new Purchases()
@@ -122,12 +109,12 @@ namespace Cafe.View.ChecksViews
 
                 DBContext.Context.Purchases.Add(purchase);
 
-                ((Products)Products.SelectedItem).HoldCount-=count;//Списание товара с остатков
+                ((Products)Products.SelectedItem).HoldCount -= count;//Списание товара с остатков
 
                 UpdateDisplayedData();
 
                 if (PurchasesList.ItemsSource != null) PurchasesList.ItemsSource = null;
-                PurchasesList.ItemsSource = Purchases;                
+                PurchasesList.ItemsSource = Purchases;
             }
             catch (Exception ex)
             {
@@ -142,7 +129,7 @@ namespace Cafe.View.ChecksViews
                 if (PurchasesList.SelectedItem != null)
                 {
                     Products product = ((Purchases)PurchasesList.SelectedItem).Products;//Получение для будущего возврата к остаткам
-                    
+
                     Purchases.Remove((Purchases)PurchasesList.SelectedItem);
 
                     DBContext.Context.Purchases.Remove((Purchases)PurchasesList.SelectedItem);
@@ -255,7 +242,7 @@ namespace Cafe.View.ChecksViews
                     SelectedCheck.Discount = CheckActions.GetDiscount(SelectedCheck.Cost);
                     SelectedCheck.CostNDiscount = SelectedCheck.Cost - SelectedCheck.Discount;
                     SelectedCheck.IsComplexLunch = false;
-                    
+
                 }
                 else
                 {
