@@ -62,8 +62,6 @@ namespace Cafe.View.ChecksViews
                         var check = (Checks)ChecksList.SelectedItem;
                         foreach (var item in check.Purchases.ToList())
                         {
-                            item.Products.HoldCount+=item.ProductCount;//Возвращение в остатки
-
                             DBContext.Context.Purchases.Remove(item);
                         }
                         DBContext.Context.Checks.Remove(check);
@@ -98,7 +96,8 @@ namespace Cafe.View.ChecksViews
                 foreach (var item in ChecksList.Items)
                 {
                     var check = (Checks)item;
-                    if (check.CheckID.ToString().Contains(Search.Text))
+                    if (check.CheckID.ToString().Contains(Search.Text) ||
+                        check.CostNDiscount.ToString().Contains(Search.Text))
                     {
                         ChecksList.SelectedItem = item;
                         ChecksList.ScrollIntoView(item);

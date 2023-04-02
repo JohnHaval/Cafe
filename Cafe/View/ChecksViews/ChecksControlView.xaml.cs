@@ -236,7 +236,7 @@ namespace Cafe.View.ChecksViews
                 decimal mainCost = 0;
                 foreach (var item in Purchases)
                 {
-                    mainCost += item.ProductCount * item.Products.Price;
+                    mainCost += item.ProductCost;
                 }
                 return mainCost;
             }

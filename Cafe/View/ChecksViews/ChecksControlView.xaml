@@ -269,7 +269,6 @@
 
                     <DockPanel>
 
-                        <Separator DockPanel.Dock="Bottom"/>
                         <TextBlock Text="{Binding PurchaseID}"
                                    Width="104"
                                    TextAlignment="Center"

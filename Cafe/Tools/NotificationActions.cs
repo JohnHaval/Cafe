@@ -30,6 +30,13 @@ namespace Cafe.Tools
             MessageBox.Show("Продукта нет в таком количестве на остатках! Невозможно добавить.", "Ошибка",
                 MessageBoxButton.OK, MessageBoxImage.Error);
         }    
+        public static bool WindowClosing()
+        {
+            MessageBoxResult result = MessageBox.Show("Вы действительно хотите закрыть программу?", "Закрытие программы",
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No) return true;
+            else return false;
+        }
 
         #region Сообщения удаления
         public static void NeedSelectBeforeRemove()

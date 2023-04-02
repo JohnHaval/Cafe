@@ -10,7 +10,7 @@
         MinWidth="800"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip"
-        Background="Black">
+        Background="Black" Closing="Window_Closing">
     
     <DockPanel>
         

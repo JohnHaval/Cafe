@@ -47,5 +47,10 @@ namespace Cafe.View
                 "Кодовое наименование: Cafe\n" +
                 "Версия: 1.0", "О программе", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.AppMainWindow.Close();
+        }
     }
 }

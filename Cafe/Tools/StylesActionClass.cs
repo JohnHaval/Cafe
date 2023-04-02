@@ -1,4 +1,5 @@
 ﻿using Cafe.Models;
+using Cafe.View.ChecksViews;
 using Cafe.View.MeasuresViews;
 using Cafe.View.ProductsViews;
 using System;
@@ -27,8 +28,12 @@ namespace Cafe.Tools
                     MainWindow.AppMainWindow.MainScreen.Content = new ProductsControlView((Products)((ListViewItem)sender).Content);
                 }
                 catch
-                {//Checks
-                    //MainWindow.AppMainWindow.MainScreen.Content = new MeasuresControlView((Measures)((ListViewItem)sender).Content);
+                {
+                    try
+                    {
+                        MainWindow.AppMainWindow.MainScreen.Content = new ChecksControlView((Checks)((ListViewItem)sender).Content);
+                    }
+                    catch { }
                 }
             }
         }

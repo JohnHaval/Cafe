@@ -1,4 +1,5 @@
-﻿using Cafe.View;
+﻿using Cafe.Tools;
+using Cafe.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,5 +31,10 @@ namespace Cafe
             DBContext.UpdateContext();
         }
         public static MainWindow AppMainWindow;
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = NotificationActions.WindowClosing();
+        }
     }
 }

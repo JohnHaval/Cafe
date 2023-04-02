@@ -69,6 +69,30 @@
 
         </StackPanel>
         
+        <Button x:Name="CloseWindow" 
+                Background="Transparent" 
+                Opacity="1"
+                Height="42"
+                Width="42"
+                BorderThickness="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Grid.Row="1"
+                ToolTip="Отображает информацию о программе"
+                Click="CloseWindow_Click"
+                IsCancel="True"
+                Style="{StaticResource ImageButton}">
+
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="50"
+                                      Direction="90"
+                                      ShadowDepth="-25"/>
+            </Button.Effect>
+
+            <Image Source="/Images/Close.png"/>
+
+        </Button>
+        
         <Button x:Name="AboutProgram" 
                 Background="Transparent" 
                 Opacity="1"
@@ -78,7 +102,9 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Grid.Row="1"
-                ToolTip="Отображает информацию о программе" Click="AboutProgram_Click">
+                ToolTip="Отображает информацию о программе" 
+                Click="AboutProgram_Click"
+                Style="{StaticResource ImageButton}">
             
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="50"
@@ -89,6 +115,7 @@
                 <Image Source="/Images/Developer.png"/>
             
         </Button>
+
 
     </Grid>
 </UserControl>
