@@ -121,7 +121,6 @@
 
                     <DockPanel>
 
-                        <Separator DockPanel.Dock="Bottom"/>
                         <TextBlock Text="{Binding CheckID}"
                                    Width="104"
                                    TextAlignment="Center"

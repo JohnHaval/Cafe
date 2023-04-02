@@ -120,13 +120,14 @@
 
                     <DockPanel>
 
-                        <Separator DockPanel.Dock="Bottom"/>
                         <TextBlock Text="{Binding MeasureID}"
-                                       Width="104"
-                                       TextAlignment="Center"></TextBlock>
+                                   Width="104"
+                                   TextAlignment="Center"
+                                   VerticalAlignment="Center"></TextBlock>
 
                         <TextBlock Text="{Binding Name}"
-                                       Margin="15,0"></TextBlock>
+                                   Margin="15,0"
+                                   VerticalAlignment="Center"></TextBlock>
 
 
                     </DockPanel>

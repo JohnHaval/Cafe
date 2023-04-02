@@ -120,7 +120,6 @@
 
                     <DockPanel>
 
-                        <Separator DockPanel.Dock="Bottom"/>
                         <TextBlock Text="{Binding ProductID}"
                                    Width="104"
                                    TextAlignment="Center"
@@ -135,7 +134,7 @@
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Left"
                                         Margin="15,0">
-                                
+
                                 <TextBlock FontSize="16">Остатки:</TextBlock>
                                 <TextBlock Text="{Binding HoldCount}"
                                            FontSize="16"
@@ -146,7 +145,7 @@
                             </StackPanel>
 
                         </StackPanel>
-                        
+
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
                             <TextBlock Text="{Binding Price, StringFormat=F2}"

@@ -128,7 +128,30 @@
     
     <Style TargetType="ListViewItem">
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="#E5D9C1"/>
+        <Setter Property="Margin" Value="3"/>
+        <Setter Property="MinHeight" Value="28"/>
         <EventSetter Event="MouseDoubleClick" Handler="MeasuresList_MouseDoubleClick"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border x:Name="brd" Background="{TemplateBinding Background}" 
+                                          BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
+                        
+                            <ContentPresenter/>
+                        
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#eab49c"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Focus.Border}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     
     <!--#endregion-->
