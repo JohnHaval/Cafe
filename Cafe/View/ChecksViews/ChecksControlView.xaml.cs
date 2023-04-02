@@ -16,6 +16,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -105,11 +106,6 @@ namespace Cafe.View.ChecksViews
         {
             try
             {
-                if (!CheckActions.HasHoldCount((Products)Products.SelectedItem))
-                {
-                    NotificationActions.NoHoldCount();
-                    return;
-                }                
                 long id = 1;
                 int count = 0;
                 try
@@ -126,6 +122,11 @@ namespace Cafe.View.ChecksViews
                     NotificationActions.IntError();
                     return;
                 }
+                if (!CheckActions.HasHoldCount((Products)Products.SelectedItem, count))
+                {
+                    NotificationActions.NoHoldCount();
+                    return;
+                }                
                 if (SelectedCheck == null) CreateNewCheck();
 
                 var purchase = new Purchases()
@@ -145,7 +146,8 @@ namespace Cafe.View.ChecksViews
                 UpdateDisplayedData();
 
                 DBContext.Context.Purchases.Load();
-                PurchasesList.Items.Refresh();
+                if (PurchasesList.ItemsSource != null) PurchasesList.ItemsSource = null;
+                PurchasesList.ItemsSource = SelectedCheck.Purchases.ToList();                
             }
             catch (Exception ex)
             {
@@ -232,17 +234,15 @@ namespace Cafe.View.ChecksViews
                 if (ComplexLunch.SelectedIndex == 1)
                 {
                     SelectedCheck.CostNDiscount = SelectedCheck.Cost - SelectedCheck.Discount;
-                    SelectedCheck.IsComplexLunch = false;
                 }
                 else
                 {
                     SelectedCheck.Discount = 0;
                     SelectedCheck.CostNDiscount = SelectedCheck.Cost;
-                    SelectedCheck.IsComplexLunch = true;
                 }
-                Cost.Text = SelectedCheck.Cost.ToString();
-                Discount.Text = SelectedCheck.Discount.ToString();
-                CostNDiscount.Text = SelectedCheck.CostNDiscount.ToString();
+                Cost.Text = SelectedCheck.Cost.ToString("F2");
+                Discount.Text = SelectedCheck.Discount.ToString("F2");
+                CostNDiscount.Text = SelectedCheck.CostNDiscount.ToString("F2");
             }
             catch (Exception ex)
             {
@@ -274,12 +274,17 @@ namespace Cafe.View.ChecksViews
                 if (ComplexLunch.SelectedIndex == 1)
                 {
                     SelectedCheck.Discount = 0;
+                    SelectedCheck.CostNDiscount = SelectedCheck.Cost;
+                    SelectedCheck.IsComplexLunch = true;
                 }
                 else
                 {
                     SelectedCheck.Discount = CheckActions.GetDiscount(SelectedCheck.Cost);
+                    SelectedCheck.CostNDiscount = SelectedCheck.Cost - SelectedCheck.Discount;
+                    SelectedCheck.IsComplexLunch = false;
                 }
-                Discount.Text = SelectedCheck.Discount.ToString();
+                Discount.Text = SelectedCheck.Discount.ToString("F2");
+                CostNDiscount.Text = SelectedCheck.CostNDiscount.ToString("F2");
             }
         }
     }

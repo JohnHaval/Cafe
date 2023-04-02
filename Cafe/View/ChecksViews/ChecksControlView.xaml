@@ -90,7 +90,7 @@
                       HorizontalAlignment="Center"
                       HorizontalContentAlignment="Center"
                       VerticalContentAlignment="Center"
-                      SelectedIndex="0">
+                      SelectedIndex="0" SelectionChanged="ComplexLunch_SelectionChanged">
                 <ComboBoxItem>Нет</ComboBoxItem>
                 <ComboBoxItem>Да</ComboBoxItem>
             </ComboBox>

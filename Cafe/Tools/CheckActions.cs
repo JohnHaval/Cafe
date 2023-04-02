@@ -17,43 +17,46 @@ namespace Cafe.Tools
             if (cost >= 1001 && cost <= 5000) return cost / 100 * 7;
             return cost / 100 * 10;
         }
-        public static bool HasHoldCount(Products product)
+        public static bool HasHoldCount(Products product, int count)
         {
-            if (product.HoldCount <= 0) return false;
+            if ((product.HoldCount - count) < 0) return false;
             else return true;
         }
         public static void RestorePurchases(List<Purchases> startPurchases)
         {
-            var newPurchases = from s in DBContext.Context.Purchases
+            var newPurchases = (from s in DBContext.Context.Purchases.ToList()
                                where !startPurchases.Any()
-                               select s;
-
-            foreach (var item in newPurchases.ToList())
+                               select s).ToList();
+            if (newPurchases.Count != 0)
             {
-                Products product = item.Products;//Получение для будущего возврата к остаткам
-                DBContext.Context.Purchases.Remove(item);
+                foreach (var item in newPurchases.ToList())
+                {
+                    Products product = item.Products;//Получение для будущего возврата к остаткам
+                    DBContext.Context.Purchases.Remove(item);
 
-                DBContext.Context.SaveChanges();
+                    DBContext.Context.SaveChanges();
 
-                product.HoldCount++;//Возвращение в остатки
+                    product.HoldCount++;//Возвращение в остатки
 
-                DBContext.Context.SaveChanges();
+                    DBContext.Context.SaveChanges();
+                }
             }
-
-            var oldPurchases = from s in startPurchases
-                               where !DBContext.Context.Purchases.Any()
-                               select s;
-
-            foreach (var item in oldPurchases.ToList())
+            var oldPurchases = (from s in startPurchases
+                               where !DBContext.Context.Purchases.ToList().Any()
+                               select s).ToList();
+            if (oldPurchases.Count != 0)
             {
-                Products product = item.Products;//Получение для будущего возврата к остаткам
-                DBContext.Context.Purchases.Add(item);
+                foreach (var item in oldPurchases.ToList())
+                {
+                    Products product = item.Products;//Получение для будущего возврата к остаткам
+                    DBContext.Context.Purchases.Add(item);
 
-                DBContext.Context.SaveChanges();
+                    DBContext.Context.SaveChanges();
 
-                product.HoldCount--;//Возвращение в остатки
+                    product.HoldCount--;//Возвращение в остатки
 
-                DBContext.Context.SaveChanges();
+                    DBContext.Context.SaveChanges();
+                }
             }
         }
     }
