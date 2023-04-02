@@ -128,7 +128,7 @@
     
     <Style TargetType="ListViewItem">
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="Background" Value="#E5D9C1"/>
+        <Setter Property="Background" Value="#eadbd4"/>
         <Setter Property="Margin" Value="3"/>
         <Setter Property="MinHeight" Value="28"/>
         <EventSetter Event="MouseDoubleClick" Handler="MeasuresList_MouseDoubleClick"/>
@@ -143,7 +143,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="#eab49c"/>
+                            <Setter Property="Background" Value="#e6cfaa"/>
                             <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="BorderThickness" Value="1"/>
                             <Setter Property="BorderBrush" Value="{StaticResource TextBox.Focus.Border}"/>
@@ -152,6 +152,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Button.MouseOver.Background}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     
     <!--#endregion-->
