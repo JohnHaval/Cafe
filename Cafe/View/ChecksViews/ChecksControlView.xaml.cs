@@ -189,7 +189,9 @@ namespace Cafe.View.ChecksViews
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+        /// <summary>
+        /// Обновление отображаемых данных
+        /// </summary>
         private void UpdateDisplayedData()
         {
             try
@@ -216,6 +218,10 @@ namespace Cafe.View.ChecksViews
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        /// <summary>
+        /// Рассчитывает стоимость всех товаров
+        /// </summary>
+        /// <returns>Стоимость всех товаров</returns>
         private decimal CalculateMainCost()
         {
             try

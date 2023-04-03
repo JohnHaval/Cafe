@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace Cafe.Tools
 {
+    /// <summary>
+    /// Класс стилей для изменения объекта из списка двойным кликом
+    /// </summary>
     public partial class StylesActionClass
     {
         private void MeasuresList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
