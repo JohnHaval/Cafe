@@ -66,7 +66,7 @@
         <StackPanel Orientation="Horizontal"
                     Grid.Row="1"
                     Grid.ColumnSpan="3"
-                    HorizontalAlignment="Left" Width="257">
+                    HorizontalAlignment="Left" Width="278">
             <TextBlock Text="Комплексный обед"
                        FontSize="16"
                        FontWeight="Medium"
