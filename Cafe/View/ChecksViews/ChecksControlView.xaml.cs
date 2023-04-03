@@ -130,11 +130,11 @@ namespace Cafe.View.ChecksViews
                 {
                     Products product = ((Purchases)PurchasesList.SelectedItem).Products;//Получение для будущего возврата к остаткам
 
+                    product.HoldCount+=((Purchases)PurchasesList.SelectedItem).ProductCount;//Возвращение в остатки
+
                     Purchases.Remove((Purchases)PurchasesList.SelectedItem);
 
                     DBContext.Context.Purchases.Remove((Purchases)PurchasesList.SelectedItem);
-
-                    product.HoldCount++;//Возвращение в остатки
 
                     UpdateDisplayedData();
 
